@@ -1,0 +1,28 @@
+server:
+  port: 8081
+
+  
+spring:
+  application:
+    name: booking
+#
+#  datasource:
+#    url: jdbc:sqlserver://localhost;databaseName=Practo;instanceName=SQLEXPRESS;encrypt=true;trustServerCertificate=true;
+#    username: sa
+#    password: password_123
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      registerWithEureka: true
+#      fetchRegistry: true
+#      defaultZone: http://localhost:8079/eureka/
+#
+#  instance:
+#    hostname: localhost
+#
+

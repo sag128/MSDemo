@@ -1,0 +1,42 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: doctor-speciality
+#
+#  datasource:
+#    url: jdbc:sqlserver://localhost;databaseName=Practo;instanceName=SQLEXPRESS;encrypt=true;trustServerCertificate=true;
+#    username: sa
+#    password: password_123
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      registerWithEureka: true
+#      fetchRegistry: true
+#      defaultZone: http://localhost:8079/eureka/
+#
+#  instance:
+#    hostname: localhost
+#
+#
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  health:
+    circuitbreakers:
+      enabled: true
+
+  endpoint:
+    health:
+      show-details: always
+
+

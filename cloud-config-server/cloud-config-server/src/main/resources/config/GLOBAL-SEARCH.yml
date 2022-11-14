@@ -1,0 +1,46 @@
+
+eureka:
+  client:
+    serviceUrl:
+      registerWithEureka: true
+      fetchRegistry: true
+      defaultZone: http://localhost:8079/eureka/
+
+  instance:
+    hostname: localhost
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    circuitbreakers:
+      enabled: true
+
+  endpoint:
+    health:
+      show-details: always
+
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      globalSearch:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        permittedNumberOfCallsInHalfOpenState:   3
+        slidingWindowType: TIME_BASED
+
+
+microservices:
+  endpoint:
+    doctorSpeciality:
+      findBySpecialization: "http://localhost:9090/doctor-speciality/doctor/speciality/findAllBySpecialization/"
+
+    hospitalSearch:
+      findByHospitalId: "http://localhost:9090/hospital-doctor-search/hospital/searchHospitalById/"
+
+      findByHospitalName: "http://localhost:9090/hospital-doctor-search/hospital/searchHospitalByName/"

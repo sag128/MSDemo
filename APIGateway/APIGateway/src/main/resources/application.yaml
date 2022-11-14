@@ -1,0 +1,75 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: Booking
+          uri: lb://BOOKING
+          predicates:
+            - Path=/book/**
+          filters:
+            - StripPrefix=1
+#            - name: CircuitBreaker
+#              args:
+#                name: booking-fallback
+#                fallbackuri: forward:/bookingFallback
+
+
+        - id: doctor-speciality
+          uri: lb://DOCTOR-SPECIALITY
+          predicates:
+            - Path=/doctor-speciality/**
+          filters:
+            - StripPrefix=1
+#            - name: CircuitBreaker
+#              args:
+#                name: doctor-speciality-fallback
+#                fallbackuri: forward:/doctorSpecialityFallback
+        - id: doctor-search-by-hospital
+          uri: lb://HOSPITAL-DOCTOR-SEARCH
+          predicates:
+            - Path=/hospital-doctor-search/**
+          filters:
+            - StripPrefix=1
+
+        - id: user-service
+          uri: lb://USERSYSTEM
+          predicates:
+            - Path=/usersystem/**
+          filters:
+            - StripPrefix=1
+
+        - id: notificaiton
+          uri: lb://notification-service
+          predicates:
+            - Path=/notification/**
+          filters:
+            - StripPrefix=1
+
+        - id: global-search
+          uri: lb://GLOBAL-SEARCH
+          predicates:
+            - Path=/search/**
+          filters:
+            - StripPrefix=1
+
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=1
+eureka:
+  client:
+    serviceUrl:
+      registerWithEureka: true
+      fetchRegistry: true
+      defaultZone: http://localhost:8079/eureka/
+
+  instance:
+    hostname: localhost

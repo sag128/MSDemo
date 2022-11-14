@@ -1,0 +1,53 @@
+
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost;databaseName=UserDemo;instanceName=SQLEXPRESS;encrypt=true;trustServerCertificate=true;
+    username: sa
+    password: password_123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    serviceUrl:
+      registerWithEureka: true
+      fetchRegistry: true
+      defaultZone: http://localhost:8079/eureka/
+
+  instance:
+    hostname: localhost
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    circuitbreakers:
+      enabled: true
+
+  endpoint:
+    health:
+      show-details: always
+
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        permittedNumberOfCallsInHalfOpenState:   3
+        slidingWindowType: TIME_BASED
+
+
+
+# The url should be of the one mentioned in the API gateway
+microservices:
+  endpoint:
+    user:
+      dummyEndpoint: "http://localhost:9090/book/booking/save"
